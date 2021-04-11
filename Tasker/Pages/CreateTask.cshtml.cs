@@ -21,9 +21,16 @@ namespace Tasker.Pages
 
         public IActionResult OnPost()
         {
-            _context.Tasks.Add(NewTask);
-            _context.SaveChanges();
-            return RedirectToPage("Index");
+            if (ModelState.IsValid)
+            {
+                _context.Tasks.Add(NewTask);
+                _context.SaveChanges();
+                return RedirectToPage("Index");
+            }
+            else
+            {
+                Page();
+            }
         }
 
         public void OnGet()
